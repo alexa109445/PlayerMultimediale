@@ -8,6 +8,9 @@ public class Audio extends ElementoMultimediale implements Riproducibile {
         super(titolo);
         this.durata = durata;
         this.volume = volume;
+        if (volume < 1) volume = 1;
+        else if (volume > 10) volume = 10;
+        this.volume = volume;
     }
 
     public void alzaVolume() {
@@ -21,7 +24,11 @@ public class Audio extends ElementoMultimediale implements Riproducibile {
     @Override
     public void play() {
         for (int i = 0; i < durata; i++) {
-            System.out.println(titolo + "!".repeat(volume));
+            String riga = titolo;
+            for (int z = 0; z < volume; z++) {
+                riga += "!";
+            }
+            System.out.println(riga);
         }
     }
 }
